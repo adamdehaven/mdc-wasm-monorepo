@@ -1,16 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/mdc'],
-  mdc: {
-    highlight: {
-      highlighter: 'shiki',
-      wrapperStyle: true,
-      theme: {
-        default: 'material-theme-palenight',
-      }
-    }
-  },
+  modules: [
+    '@nuxtjs/mdc',
+  ],
   nitro: {
     preset: 'cloudflare-pages',
     prerender: {
@@ -19,5 +12,22 @@ export default defineNuxtConfig({
     experimental: {
       wasm: true,
     },
+  },
+  // https://github.com/nuxt-modules/mdc?tab=readme-ov-file#configurations
+  mdc: {
+    headings: {
+      anchorLinks: {
+        h1: false,
+      },
+    },
+    highlight: {
+      highlighter: 'shiki',
+      theme: {
+        default: 'material-theme-lighter',
+      }
+    },
+  },
+  typescript: {
+    includeWorkspace: true,
   },
 })
