@@ -9,11 +9,24 @@ export default defineNuxtConfig({
     prerender: {
       autoSubfolderIndex: false // Set to false to match Cloudflare route matching rules: https://nuxt.com/deploy/cloudflare
     },
-    experimental: {
-      wasm: true,
+  },
+  $production: {
+    nitro: {
+      // !Important: we only want to enable the wasm feature in production since it will break syntax highlighting when running the dev server
+      experimental: {
+        wasm: true,
+      },
     },
   },
-  // https://github.com/nuxt-modules/mdc?tab=readme-ov-file#configurations
+  vite: {
+    build: {
+      rollupOptions: {
+        external: [
+          'shiki/onig.wasm', // !Important: externalize the wasm import
+        ],
+      },
+    },
+  },
   mdc: {
     headings: {
       anchorLinks: {
